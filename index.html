@@ -136,6 +136,14 @@ body {
 .q-lbl  { font-size: 13px; font-weight: 700; color: #1a1a2e; }
 .score-cell { display: flex; flex-direction: column; gap: 5px; }
 .score-comp { font-size: 11px; color: #7a8a9a; line-height: 1.3; }
+.score-notes {
+  width: 100%; min-height: 52px;
+  padding: 6px 8px; border: 1.5px solid #e4eaf0; border-radius: 6px;
+  font-size: 11.5px; color: #3d4a57; line-height: 1.45;
+  resize: vertical; font-family: inherit; background: #fafbfc;
+}
+.score-notes:focus { outline: none; border-color: #0070D2; background: white; }
+.score-notes.prefilled { background: #f5f8fb; border-color: #c8d8ea; }
 
 .score-select {
   width: 100%; max-width: 180px;
@@ -472,18 +480,20 @@ body {
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
+              <textarea class="score-notes" id="notes-connor-1" placeholder="Notes…"></textarea>
             </div>
           </td>
           <td>
             <div class="score-cell">
               <div class="score-comp">Achieve Results · Make Informed Decisions</div>
-              <select class="score-select" id="sc-mike-1" onchange="updateScore(this,'mike',1)">
+              <select class="score-select s2" id="sc-mike-1" onchange="updateScore(this,'mike',1)">
                 <option value="">— Select —</option>
                 <option value="1">1 — No evidence</option>
-                <option value="2">2 — Some evidence</option>
+                <option value="2" selected>2 — Some evidence</option>
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
+              <textarea class="score-notes prefilled" id="notes-mike-1">Demonstrated results at scale ($170M→$240M, $3B book) and used "protecting net ARR" language when describing multiyear deal structuring — promising signal. But didn't explicitly distinguish the renewals motion from sales: no mention of churn indicators, renewal-rate KPIs, or what he'd do differently when the goal is retention vs. acquisition.</textarea>
             </div>
           </td>
           <td>
@@ -496,6 +506,7 @@ body {
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
+              <textarea class="score-notes" id="notes-perrisa-1" placeholder="Notes…"></textarea>
             </div>
           </td>
         </tr>
@@ -511,18 +522,20 @@ body {
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
+              <textarea class="score-notes" id="notes-connor-2" placeholder="Notes…"></textarea>
             </div>
           </td>
           <td>
             <div class="score-cell">
               <div class="score-comp">Coach &amp; Develop</div>
-              <select class="score-select" id="sc-mike-2" onchange="updateScore(this,'mike',2)">
+              <select class="score-select s2" id="sc-mike-2" onchange="updateScore(this,'mike',2)">
                 <option value="">— Select —</option>
                 <option value="1">1 — No evidence</option>
-                <option value="2">2 — Some evidence</option>
+                <option value="2" selected>2 — Some evidence</option>
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
+              <textarea class="score-notes prefilled" id="notes-mike-2">Strong coaching philosophy and built his financial services team largely from scratch. But no specific example surfaced: no named individual, no identified skill gap, no development arc. Spoke about coaching sellers through negotiations — that's incremental, not developing someone in a genuinely new capability.</textarea>
             </div>
           </td>
           <td>
@@ -535,6 +548,7 @@ body {
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
+              <textarea class="score-notes" id="notes-perrisa-2" placeholder="Notes…"></textarea>
             </div>
           </td>
         </tr>
@@ -550,18 +564,20 @@ body {
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
+              <textarea class="score-notes" id="notes-connor-3" placeholder="Notes…"></textarea>
             </div>
           </td>
           <td>
             <div class="score-cell">
               <div class="score-comp">Manage Ambiguity</div>
-              <select class="score-select" id="sc-mike-3" onchange="updateScore(this,'mike',3)">
+              <select class="score-select s2" id="sc-mike-3" onchange="updateScore(this,'mike',3)">
                 <option value="">— Select —</option>
                 <option value="1">1 — No evidence</option>
-                <option value="2">2 — Some evidence</option>
+                <option value="2" selected>2 — Some evidence</option>
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
+              <textarea class="score-notes prefilled" id="notes-mike-3">Well-structured 30/60/90 plan shows strong self-awareness about needing to listen before leading. But the question asked for a past transition story — what was genuinely hard, who he leaned on, what he had to unlearn. He gave a forward-looking plan, not a reflection. The AT&T→Microsoft move likely holds that story; he didn't tell it.</textarea>
             </div>
           </td>
           <td>
@@ -574,6 +590,7 @@ body {
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
+              <textarea class="score-notes" id="notes-perrisa-3" placeholder="Notes…"></textarea>
             </div>
           </td>
         </tr>
@@ -667,7 +684,7 @@ body {
 <script>
 const scores = {
   connor:  { 1: null, 2: null, 3: null },
-  mike:    { 1: null, 2: null, 3: null },
+  mike:    { 1: 2, 2: 2, 3: 2 },
   perrisa: { 1: null, 2: null, 3: null }
 };
 
