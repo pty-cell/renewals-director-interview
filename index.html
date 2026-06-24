@@ -499,14 +499,14 @@ body {
           <td>
             <div class="score-cell">
               <div class="score-comp">Take Accountability</div>
-              <select class="score-select" id="sc-perrisa-1" onchange="updateScore(this,'perrisa',1)">
+              <select class="score-select s2" id="sc-perrisa-1" onchange="updateScore(this,'perrisa',1)">
                 <option value="">— Select —</option>
                 <option value="1">1 — No evidence</option>
-                <option value="2">2 — Some evidence</option>
+                <option value="2" selected>2 — Some evidence</option>
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
-              <textarea class="score-notes" id="notes-perrisa-1" placeholder="Notes…"></textarea>
+              <textarea class="score-notes prefilled" id="notes-perrisa-1">Acknowledged the gap directly — no direct quota-carrying or forecasting role — and framed it as a learning curve, not a blocker. The FEMA deal ($6M ACV) shows strong commercial judgment, but it's a deal-structuring story, not an accountability story. She was the architect of the solution, not the person whose number was at risk. Couldn't point to a moment where results were on the line with her name on them.</textarea>
             </div>
           </td>
         </tr>
@@ -541,14 +541,14 @@ body {
           <td>
             <div class="score-cell">
               <div class="score-comp">Coach &amp; Develop</div>
-              <select class="score-select" id="sc-perrisa-2" onchange="updateScore(this,'perrisa',2)">
+              <select class="score-select s2" id="sc-perrisa-2" onchange="updateScore(this,'perrisa',2)">
                 <option value="">— Select —</option>
                 <option value="1">1 — No evidence</option>
-                <option value="2">2 — Some evidence</option>
+                <option value="2" selected>2 — Some evidence</option>
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
-              <textarea class="score-notes" id="notes-perrisa-2" placeholder="Notes…"></textarea>
+              <textarea class="score-notes prefilled" id="notes-perrisa-2">Credible coaching philosophy — 90%+ manager favorability, former team members still reach out for mentorship, empathetic but accountable style. But no specific person, no identified skill gap she deliberately closed, no development arc. The transcript describes who she is as a manager; it doesn't show what she built in someone else.</textarea>
             </div>
           </td>
         </tr>
@@ -583,14 +583,14 @@ body {
           <td>
             <div class="score-cell">
               <div class="score-comp">Demonstrate Courage</div>
-              <select class="score-select" id="sc-perrisa-3" onchange="updateScore(this,'perrisa',3)">
+              <select class="score-select s2" id="sc-perrisa-3" onchange="updateScore(this,'perrisa',3)">
                 <option value="">— Select —</option>
                 <option value="1">1 — No evidence</option>
-                <option value="2">2 — Some evidence</option>
+                <option value="2" selected>2 — Some evidence</option>
                 <option value="3">3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
-              <textarea class="score-notes" id="notes-perrisa-3" placeholder="Notes…"></textarea>
+              <textarea class="score-notes prefilled" id="notes-perrisa-3">The FEMA deal is a strong commercial creativity story — reframed the ask, found a hybrid solution, closed a $6M ACV deal. But it's a problem-solving story, not a courage story. She found a way to say yes creatively rather than holding a hard position under pushback. Would be a 3 if she'd described a moment where she stood firm on a recommendation despite sustained pressure from a senior leader to back down.</textarea>
             </div>
           </td>
         </tr>
@@ -685,7 +685,7 @@ body {
 const scores = {
   connor:  { 1: 4, 2: 3, 3: 3 },
   mike:    { 1: 2, 2: 2, 3: 2 },
-  perrisa: { 1: null, 2: null, 3: null }
+  perrisa: { 1: 2, 2: 2, 3: 2 }
 };
 
 function switchTab(tab, btn) {
