@@ -473,14 +473,14 @@ body {
           <td>
             <div class="score-cell">
               <div class="score-comp">Achieve Results · Take Accountability</div>
-              <select class="score-select" id="sc-connor-1" onchange="updateScore(this,'connor',1)">
+              <select class="score-select s4" id="sc-connor-1" onchange="updateScore(this,'connor',1)">
                 <option value="">— Select —</option>
                 <option value="1">1 — No evidence</option>
                 <option value="2">2 — Some evidence</option>
                 <option value="3">3 — Strong</option>
-                <option value="4">4 — Exceptional</option>
+                <option value="4" selected>4 — Exceptional</option>
               </select>
-              <textarea class="score-notes" id="notes-connor-1" placeholder="Notes…"></textarea>
+              <textarea class="score-notes prefilled" id="notes-connor-1">Has been covering the Director role for six weeks and arrived with exact-dollar situational awareness ($87M goal, $32M gap, $54M swing, $40M in Q4). Identified three concrete retention levers, a team empowerment model with named workstream owners, and a specific trust-building playbook with sales leadership (Matt's cadence, Ryan Coleman relationship, Julie prep offer). Not theorizing about the first 90 days — already operating at this level.</textarea>
             </div>
           </td>
           <td>
@@ -515,14 +515,14 @@ body {
           <td>
             <div class="score-cell">
               <div class="score-comp">Demonstrate Courage</div>
-              <select class="score-select" id="sc-connor-2" onchange="updateScore(this,'connor',2)">
+              <select class="score-select s3" id="sc-connor-2" onchange="updateScore(this,'connor',2)">
                 <option value="">— Select —</option>
                 <option value="1">1 — No evidence</option>
                 <option value="2">2 — Some evidence</option>
-                <option value="3">3 — Strong</option>
+                <option value="3" selected>3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
-              <textarea class="score-notes" id="notes-connor-2" placeholder="Notes…"></textarea>
+              <textarea class="score-notes prefilled" id="notes-connor-2">QBC reverse-ramp deal: flagged a $1M AOV risk, got pushback from the sales leader, escalated above her and won. Led with "here's why this could hurt you next year" rather than a hard no. Real resistance, real escalation, clear outcome. Would be a 4 if the example were a broader organizational or process change that leadership resisted — this was a single-deal conflict, not a structural challenge.</textarea>
             </div>
           </td>
           <td>
@@ -557,14 +557,14 @@ body {
           <td>
             <div class="score-cell">
               <div class="score-comp">Influence</div>
-              <select class="score-select" id="sc-connor-3" onchange="updateScore(this,'connor',3)">
+              <select class="score-select s3" id="sc-connor-3" onchange="updateScore(this,'connor',3)">
                 <option value="">— Select —</option>
                 <option value="1">1 — No evidence</option>
                 <option value="2">2 — Some evidence</option>
-                <option value="3">3 — Strong</option>
+                <option value="3" selected>3 — Strong</option>
                 <option value="4">4 — Exceptional</option>
               </select>
-              <textarea class="score-notes" id="notes-connor-3" placeholder="Notes…"></textarea>
+              <textarea class="score-notes prefilled" id="notes-connor-3">Same QBC deal — when the sales leader resisted the deal structure, Connor escalated above her and built the business case at the VP level. Shows organizational savvy and framing skill. Slight limitation: relied on the same example as Q2; a second story showing sustained influence across multiple senior touchpoints would push this to a 4.</textarea>
             </div>
           </td>
           <td>
@@ -683,7 +683,7 @@ body {
 
 <script>
 const scores = {
-  connor:  { 1: null, 2: null, 3: null },
+  connor:  { 1: 4, 2: 3, 3: 3 },
   mike:    { 1: 2, 2: 2, 3: 2 },
   perrisa: { 1: null, 2: null, 3: null }
 };
