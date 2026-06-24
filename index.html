@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Director, Renewals – MuleSoft | Interview Guide</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: #f0f4f8;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(135deg, #032D60 0%, #0070D2 100%);
+  color: white;
+  padding: 24px 32px;
+}
+.header h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.header-meta { font-size: 13px; opacity: 0.7; display: flex; gap: 12px; }
+
+.tabs-wrapper {
+  background: white;
+  border-bottom: 1px solid #dde3ea;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+}
+.tabs { display: flex; overflow-x: auto; }
+.tab-btn {
+  padding: 15px 22px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #5a6a7a;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.tab-btn:hover { color: #0070D2; background: #f5faff; }
+.tab-btn.active { color: #0070D2; border-bottom-color: #0070D2; font-weight: 600; }
+
+.content { max-width: 880px; margin: 0 auto; padding: 32px 20px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.context-card {
+  background: #ebf5fb;
+  border-left: 4px solid #0070D2;
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+.context-card h2 {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; color: #0070D2; margin-bottom: 6px;
+}
+.context-card p { font-size: 14px; color: #2c3e50; line-height: 1.6; }
+
+.question-card {
+  background: white;
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #e4eaf0;
+}
+.question-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+.q-number {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: #0070D2; color: white;
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.question-text { font-size: 15px; font-weight: 500; color: #1a1a2e; line-height: 1.55; font-style: italic; }
+
+.competency-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; padding-left: 44px; }
+.ctag {
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 20px; letter-spacing: 0.2px;
+}
+.ctag-git  { background: #d4edda; color: #155724; }
+.ctag-cc   { background: #e8d5f5; color: #6b2fa0; }
+.ctag-mc   { background: #fde8d0; color: #7d2e00; }
+.ctag-sfs  { background: #d0e8ff; color: #003577; }
+
+.signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-left: 44px; }
+.signal-box { border-radius: 8px; padding: 12px 14px; }
+.signal-box.strong { background: #f0faf2; border: 1px solid #b8dfc4; }
+.signal-box.weak   { background: #fff8f0; border: 1px solid #ffd0a0; }
+.signal-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 5px;
+}
+.signal-box.strong .signal-label { color: #1a7a35; }
+.signal-box.weak .signal-label   { color: #c05800; }
+.signal-text { font-size: 12.5px; color: #3d4a57; line-height: 1.5; }
+
+/* Scorecard */
+.sc-section { margin-bottom: 36px; }
+.section-title {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; color: #0070D2;
+  margin-bottom: 14px; padding-bottom: 8px;
+  border-bottom: 2px solid #e4eaf0;
+}
+
+.rubric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+.rubric-item { border-radius: 8px; padding: 14px 12px; text-align: center; }
+.rubric-score { font-size: 26px; font-weight: 800; margin-bottom: 4px; }
+.rubric-lbl   { font-size: 11px; font-weight: 700; margin-bottom: 3px; }
+.rubric-desc  { font-size: 11px; line-height: 1.4; color: #5a6a7a; }
+.r1 { background: #fde8e8; } .r1 .rubric-score { color: #c0392b; }
+.r2 { background: #fef3e2; } .r2 .rubric-score { color: #d35400; }
+.r3 { background: #eafaf1; } .r3 .rubric-score { color: #1e8449; }
+.r4 { background: #eaf4ff; } .r4 .rubric-score { color: #0070D2; }
+
+.score-table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+.score-table th {
+  background: #032D60; color: white;
+  padding: 13px 16px; text-align: left; font-size: 13px; font-weight: 600;
+}
+.score-table th:first-child { width: 80px; }
+.score-table td { padding: 14px 16px; border-bottom: 1px solid #e4eaf0; background: white; vertical-align: top; }
+.score-table tr:last-child td { border-bottom: none; }
+.score-table tr.total-row td { background: #f5f8fa; font-weight: 700; border-top: 2px solid #dde3ea; }
+
+.q-lbl  { font-size: 13px; font-weight: 700; color: #1a1a2e; }
+.score-cell { display: flex; flex-direction: column; gap: 5px; }
+.score-comp { font-size: 11px; color: #7a8a9a; line-height: 1.3; }
+
+.score-select {
+  width: 100%; max-width: 180px;
+  padding: 7px 28px 7px 10px;
+  border: 1.5px solid #dde3ea; border-radius: 6px;
+  font-size: 12px; font-weight: 600;
+  cursor: pointer; background-color: white;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235a6a7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 8px center;
+  transition: border-color 0.15s;
+}
+.score-select:focus { outline: none; border-color: #0070D2; }
+.score-select.s1 { border-color: #e74c3c; color: #c0392b; background-color: #fde8e8; }
+.score-select.s2 { border-color: #e67e22; color: #d35400; background-color: #fef3e2; }
+.score-select.s3 { border-color: #27ae60; color: #1e8449; background-color: #eafaf1; }
+.score-select.s4 { border-color: #0070D2; color: #0070D2; background-color: #eaf4ff; }
+
+.total-val { font-size: 22px; font-weight: 800; color: #032D60; }
+.total-max { font-size: 13px; color: #7a8a9a; }
+
+.bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.bar-name { font-size: 13px; font-weight: 600; width: 150px; flex-shrink: 0; }
+.bar-track { flex: 1; height: 18px; background: #e4eaf0; border-radius: 10px; overflow: hidden; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, #0070D2, #00A1E0); border-radius: 10px; transition: width 0.4s ease; }
+.bar-val { font-size: 13px; font-weight: 700; width: 48px; text-align: right; color: #032D60; }
+
+.snap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.snap-card { background: white; border-radius: 10px; border: 1px solid #e4eaf0; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.snap-hdr { background: #032D60; color: white; padding: 12px 16px; font-size: 13px; font-weight: 600; }
+.snap-body { padding: 14px 16px; }
+.snap-row { margin-bottom: 12px; }
+.snap-row:last-child { margin-bottom: 0; }
+.snap-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #7a8a9a; margin-bottom: 3px; }
+.snap-val { font-size: 12px; color: #2c3e50; line-height: 1.45; }
+.chk { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; font-weight: 600; margin-right: 4px; margin-bottom: 3px; }
+.chy { color: #1e8449; } .chn { color: #c0392b; } .chq { color: #d35400; }
+
+@media (max-width: 640px) {
+  .signal-grid { grid-template-columns: 1fr; }
+  .rubric-grid { grid-template-columns: repeat(2, 1fr); }
+  .snap-grid { grid-template-columns: 1fr; }
+  .score-table th:first-child { width: 60px; }
+  .tabs-wrapper { padding: 0 12px; }
+  .content { padding: 20px 12px; }
+  .header { padding: 18px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Director, Renewals — MuleSoft &nbsp;|&nbsp; Interview Guide</h1>
+  <div class="header-meta">
+    <span>JR341682</span><span>·</span>
+    <span>3 Candidates</span><span>·</span>
+    <span>June 2026</span>
+  </div>
+</div>
+
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active"  onclick="switchTab('connor',  this)">Connor Gallery</button>
+    <button class="tab-btn"         onclick="switchTab('mike',    this)">Mike Murray</button>
+    <button class="tab-btn"         onclick="switchTab('perrisa', this)">Perrisa Joorabchi</button>
+    <button class="tab-btn"         onclick="switchTab('scorecard', this)">&#9654; Scorecard</button>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ============ CONNOR ============ -->
+<div id="tab-connor" class="tab-panel active">
+
+  <div class="context-card">
+    <h2>Candidate Context</h2>
+    <p>Connor is the most operationally aligned candidate. He built the MuleSoft renewals org from scratch, knows the product, and has a strong individual KPI track record (101.7% renewal rate, $250M book). The central question is whether he can step up from managing a team of 6 to setting Director-level strategy and leading through influence at the VP and C-suite level.</p>
+  </div>
+
+  <div class="question-card">
+    <div class="question-header">
+      <div class="q-number">1</div>
+      <div class="question-text">"You were a founding member of the MuleSoft renewals org and have built it into a $250M book. As a Director, you'd be accountable for vision and strategy — not just execution. Walk me through what you'd prioritize in your first 90 days, and how you'd know whether your approach is working."</div>
+    </div>
+    <div class="competency-tags">
+      <span class="ctag ctag-git">Get it Done: Achieve Results</span>
+      <span class="ctag ctag-git">Get it Done: Take Accountability</span>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-box strong">
+        <div class="signal-label">✓ Strong Signal (3–4)</div>
+        <div class="signal-text">Distinguishes between execution and strategy. Mentions building executive alignment with Sales and CS, reviewing territory pipeline health, identifying systemic gaps, and setting measurable targets for the team — not just himself.</div>
+      </div>
+      <div class="signal-box weak">
+        <div class="signal-label">⚠ Weak Signal (1–2)</div>
+        <div class="signal-text">Focuses on "learning the role" or describes what he already does as Manager. Doesn't articulate how his lens and scope would change at the Director level.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-header">
+      <div class="q-number">2</div>
+      <div class="question-text">"You've had 11 years inside this company. If you stepped into this Director role, what is one significant change you'd push for — in process, strategy, or how the team operates — that you believe leadership might initially resist? How would you make the case for it?"</div>
+    </div>
+    <div class="competency-tags">
+      <span class="ctag ctag-cc">Courageous Communicator: Demonstrate Courage</span>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-box strong">
+        <div class="signal-label">✓ Strong Signal (3–4)</div>
+        <div class="signal-text">Identifies a real, specific tension he's observed — not a generic improvement. Articulates the risk of raising it and shows he'd do it anyway. Has a clear, evidence-based strategy for building the case.</div>
+      </div>
+      <div class="signal-box weak">
+        <div class="signal-label">⚠ Weak Signal (1–2)</div>
+        <div class="signal-text">Names something safe and uncontroversial, or says leadership is already doing everything right. Avoids identifying real friction he's witnessed from the inside.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-header">
+      <div class="q-number">3</div>
+      <div class="question-text">"As a Director, you'd own VP-level relationships with Sales and CS leadership in territory. Tell me about a time you had to convince a senior Sales or CS leader to change how they were approaching a renewal or an at-risk account. What was at stake, what did you do, and what happened?"</div>
+    </div>
+    <div class="competency-tags">
+      <span class="ctag ctag-mc">Motivate &amp; Champion: Influence</span>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-box strong">
+        <div class="signal-label">✓ Strong Signal (3–4)</div>
+        <div class="signal-text">Describes real pushback from a VP or senior stakeholder. Built a compelling case using data, customer insight, or business risk. The outcome demonstrates a clear win or a lesson applied going forward.</div>
+      </div>
+      <div class="signal-box weak">
+        <div class="signal-label">⚠ Weak Signal (1–2)</div>
+        <div class="signal-text">Describes influencing a peer or rep rather than a senior leader. The situation lacked real resistance — the stakeholder was already on board.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ MIKE ============ -->
+<div id="tab-mike" class="tab-panel">
+
+  <div class="context-card">
+    <h2>Candidate Context</h2>
+    <p>Mike brings serious large-scale leadership credentials — $3B+ revenue at Microsoft, consistent overachievement, and Americas/LATAM coverage. The central question is fit: his background is enterprise support sales, not SaaS renewals, and Salesforce.com experience is a hard requirement on the JD. Probe whether his leadership horsepower outweighs the product and motion gap.</p>
+  </div>
+
+  <div class="question-card">
+    <div class="question-header">
+      <div class="q-number">1</div>
+      <div class="question-text">"At Microsoft you grew Unified Support from $170M to $240M and accelerated annual revenue growth from 9% to 15%. SaaS renewals operate on a different motion — the primary objective is protecting ARR, managing attrition risk, and maximizing contract value at renewal, not acquiring new logos. How would you translate your growth playbook into that context? What would you do differently, and what would carry over?"</div>
+    </div>
+    <div class="competency-tags">
+      <span class="ctag ctag-git">Get it Done: Achieve Results</span>
+      <span class="ctag ctag-sfs">Salesforce Smart: Make Informed Decisions</span>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-box strong">
+        <div class="signal-label">✓ Strong Signal (3–4)</div>
+        <div class="signal-text">Shows clear self-awareness about the difference between sales and renewals motions. Articulates specific adjustments — leading indicators of churn vs. pipeline, defending existing value, renewal-specific KPIs. Doesn't just say "retention is a different form of selling."</div>
+      </div>
+      <div class="signal-box weak">
+        <div class="signal-label">⚠ Weak Signal (1–2)</div>
+        <div class="signal-text">Conflates renewals with sales or account management. Can't articulate what he'd need to do differently. Leans on large revenue numbers without engaging with the structural difference in the motion.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-header">
+      <div class="q-number">2</div>
+      <div class="question-text">"You've hired and developed large sales teams at Microsoft and AT&T. Renewal managers need a distinct skill set — negotiating from a position of risk rather than opportunity, managing multi-stakeholder retention plays, and staying focused on KPIs like renewal rate, contract term length, and timely closure. Tell me about a time you developed someone in a capability area that was genuinely new for them — not just coaching them to get better at what they already did."</div>
+    </div>
+    <div class="competency-tags">
+      <span class="ctag ctag-mc">Motivate &amp; Champion: Coach &amp; Develop</span>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-box strong">
+        <div class="signal-label">✓ Strong Signal (3–4)</div>
+        <div class="signal-text">Names a specific person, a specific skill gap, a deliberate development plan, and a measurable outcome. Shows he tailors coaching rather than applying a one-size approach. The skill developed was genuinely new — not incremental improvement.</div>
+      </div>
+      <div class="signal-box weak">
+        <div class="signal-label">⚠ Weak Signal (1–2)</div>
+        <div class="signal-text">Speaks in general terms about "building culture" or "motivating teams." Can't point to a specific individual whose skill profile meaningfully changed as a result of his coaching.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-header">
+      <div class="q-number">3</div>
+      <div class="question-text">"This role is a significant context shift — from Microsoft's enterprise support model into Salesforce MuleSoft SaaS renewals with a different product set, customer base, and operating motion. Tell me about the most significant transition you've navigated in your career and how you got up to speed quickly without losing results in the meantime."</div>
+    </div>
+    <div class="competency-tags">
+      <span class="ctag ctag-mc">Motivate &amp; Champion: Manage Ambiguity</span>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-box strong">
+        <div class="signal-label">✓ Strong Signal (3–4)</div>
+        <div class="signal-text">Describes a real transition with specifics — who they leaned on, how they built credibility quickly, how they balanced learning with delivering. Shows self-awareness about what was genuinely hard and what they had to unlearn.</div>
+      </div>
+      <div class="signal-box weak">
+        <div class="signal-label">⚠ Weak Signal (1–2)</div>
+        <div class="signal-text">Says transitions are easy for them, or describes a low-stakes move. Doesn't reflect on what they had to unlearn or where they initially struggled.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ PERRISA ============ -->
+<div id="tab-perrisa" class="tab-panel">
+
+  <div class="context-card">
+    <h2>Candidate Context</h2>
+    <p>Perrisa has the deepest MuleSoft commercial expertise of the three — pricing, deal structure, LATAM, and executive stakeholder advisory across 10+ years at Salesforce. The central question is whether she can make the pivot from advisor to owner: her background is commercial governance and deal strategy, not carrying a renewal number with direct accountability for attrition and retention results.</p>
+  </div>
+
+  <div class="question-card">
+    <div class="question-header">
+      <div class="q-number">1</div>
+      <div class="question-text">"Much of your career has been in deal strategy and commercial advisory — you've enabled and supported renewal outcomes rather than owned them directly. In this Director role, you'd carry the renewal number: renewal rate, attrition, timely closure. Tell me about the closest experience you've had to owning a revenue outcome with your name on it. What did accountability feel like, and how did you respond when results were at risk?"</div>
+    </div>
+    <div class="competency-tags">
+      <span class="ctag ctag-git">Get it Done: Take Accountability</span>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-box strong">
+        <div class="signal-label">✓ Strong Signal (3–4)</div>
+        <div class="signal-text">Identifies a moment of genuine outcome ownership — not advisory influence. Shows urgency, personal accountability, and a specific response when results were at risk. Doesn't retreat into the framing of "I supported the team that owned it."</div>
+      </div>
+      <div class="signal-box weak">
+        <div class="signal-label">⚠ Weak Signal (1–2)</div>
+        <div class="signal-text">Struggles to name a situation where they were personally on the hook for the result. Defaults to "I influenced the outcome." Can't describe what owning the number felt like when it was under pressure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-header">
+      <div class="q-number">2</div>
+      <div class="question-text">"You've led deal strategy professionals — people who advise on pricing, structure, and business terms. Renewal managers carry quotas, negotiate directly with customers, and close under time pressure. How would your coaching approach need to change when developing a team with that different profile? Walk me through a specific example of how you've developed someone through a skill set that required them to operate very differently than they had before."</div>
+    </div>
+    <div class="competency-tags">
+      <span class="ctag ctag-mc">Motivate &amp; Champion: Coach &amp; Develop</span>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-box strong">
+        <div class="signal-label">✓ Strong Signal (3–4)</div>
+        <div class="signal-text">Identifies the specific gap between her current team profile and a quota-carrying renewal team. Has a concrete approach to close it. Uses a real person and a real development arc. Shows she's thought about building commercial confidence, not just technical knowledge.</div>
+      </div>
+      <div class="signal-box weak">
+        <div class="signal-label">⚠ Weak Signal (1–2)</div>
+        <div class="signal-text">Assumes her current coaching toolkit translates directly without adjustment. Can't point to developing someone outside their existing comfort zone. Conflates teaching subject-matter knowledge with building execution confidence under pressure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-header">
+      <div class="q-number">3</div>
+      <div class="question-text">"In your deal strategy and commercial advisory roles, you've had to deliver recommendations that Sales leadership didn't want to hear — commercial guardrails, pricing limits, deal restructures. Tell me about a specific situation where you stood firm on a difficult recommendation with a senior Sales leader, and what happened as a result."</div>
+    </div>
+    <div class="competency-tags">
+      <span class="ctag ctag-cc">Courageous Communicator: Demonstrate Courage</span>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-box strong">
+        <div class="signal-label">✓ Strong Signal (3–4)</div>
+        <div class="signal-text">Describes real friction — a senior stakeholder who pushed back, clear pressure to back down, and a specific rationale for holding the position. The outcome shows business impact, not just a "I was right" moment.</div>
+      </div>
+      <div class="signal-box weak">
+        <div class="signal-label">⚠ Weak Signal (1–2)</div>
+        <div class="signal-text">Describes a soft disagreement that resolved easily, or frames it as the stakeholder "coming around" without real resistance. Speaks abstractly about "setting guardrails" without a specific high-stakes example.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ SCORECARD ============ -->
+<div id="tab-scorecard" class="tab-panel">
+
+  <div class="sc-section">
+    <div class="section-title">Scoring Rubric</div>
+    <div class="rubric-grid">
+      <div class="rubric-item r1">
+        <div class="rubric-score">1</div>
+        <div class="rubric-lbl">No Evidence</div>
+        <div class="rubric-desc">Speaks in generalities ("I would…") — no real example given</div>
+      </div>
+      <div class="rubric-item r2">
+        <div class="rubric-score">2</div>
+        <div class="rubric-lbl">Some Evidence</div>
+        <div class="rubric-desc">Has a real example but vague on actions taken or the outcome</div>
+      </div>
+      <div class="rubric-item r3">
+        <div class="rubric-score">3</div>
+        <div class="rubric-lbl">Strong Evidence</div>
+        <div class="rubric-desc">Clear STAR answer with specific actions and a measurable result</div>
+      </div>
+      <div class="rubric-item r4">
+        <div class="rubric-score">4</div>
+        <div class="rubric-lbl">Exceptional</div>
+        <div class="rubric-desc">STAR + insight, scale, and direct relevance to this role</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc-section">
+    <div class="section-title">Question Scores</div>
+    <table class="score-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Connor Gallery</th>
+          <th>Mike Murray</th>
+          <th>Perrisa Joorabchi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="q-lbl">Q1</div></td>
+          <td>
+            <div class="score-cell">
+              <div class="score-comp">Achieve Results · Take Accountability</div>
+              <select class="score-select" id="sc-connor-1" onchange="updateScore(this,'connor',1)">
+                <option value="">— Select —</option>
+                <option value="1">1 — No evidence</option>
+                <option value="2">2 — Some evidence</option>
+                <option value="3">3 — Strong</option>
+                <option value="4">4 — Exceptional</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-comp">Achieve Results · Make Informed Decisions</div>
+              <select class="score-select" id="sc-mike-1" onchange="updateScore(this,'mike',1)">
+                <option value="">— Select —</option>
+                <option value="1">1 — No evidence</option>
+                <option value="2">2 — Some evidence</option>
+                <option value="3">3 — Strong</option>
+                <option value="4">4 — Exceptional</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-comp">Take Accountability</div>
+              <select class="score-select" id="sc-perrisa-1" onchange="updateScore(this,'perrisa',1)">
+                <option value="">— Select —</option>
+                <option value="1">1 — No evidence</option>
+                <option value="2">2 — Some evidence</option>
+                <option value="3">3 — Strong</option>
+                <option value="4">4 — Exceptional</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="q-lbl">Q2</div></td>
+          <td>
+            <div class="score-cell">
+              <div class="score-comp">Demonstrate Courage</div>
+              <select class="score-select" id="sc-connor-2" onchange="updateScore(this,'connor',2)">
+                <option value="">— Select —</option>
+                <option value="1">1 — No evidence</option>
+                <option value="2">2 — Some evidence</option>
+                <option value="3">3 — Strong</option>
+                <option value="4">4 — Exceptional</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-comp">Coach &amp; Develop</div>
+              <select class="score-select" id="sc-mike-2" onchange="updateScore(this,'mike',2)">
+                <option value="">— Select —</option>
+                <option value="1">1 — No evidence</option>
+                <option value="2">2 — Some evidence</option>
+                <option value="3">3 — Strong</option>
+                <option value="4">4 — Exceptional</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-comp">Coach &amp; Develop</div>
+              <select class="score-select" id="sc-perrisa-2" onchange="updateScore(this,'perrisa',2)">
+                <option value="">— Select —</option>
+                <option value="1">1 — No evidence</option>
+                <option value="2">2 — Some evidence</option>
+                <option value="3">3 — Strong</option>
+                <option value="4">4 — Exceptional</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><div class="q-lbl">Q3</div></td>
+          <td>
+            <div class="score-cell">
+              <div class="score-comp">Influence</div>
+              <select class="score-select" id="sc-connor-3" onchange="updateScore(this,'connor',3)">
+                <option value="">— Select —</option>
+                <option value="1">1 — No evidence</option>
+                <option value="2">2 — Some evidence</option>
+                <option value="3">3 — Strong</option>
+                <option value="4">4 — Exceptional</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-comp">Manage Ambiguity</div>
+              <select class="score-select" id="sc-mike-3" onchange="updateScore(this,'mike',3)">
+                <option value="">— Select —</option>
+                <option value="1">1 — No evidence</option>
+                <option value="2">2 — Some evidence</option>
+                <option value="3">3 — Strong</option>
+                <option value="4">4 — Exceptional</option>
+              </select>
+            </div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-comp">Demonstrate Courage</div>
+              <select class="score-select" id="sc-perrisa-3" onchange="updateScore(this,'perrisa',3)">
+                <option value="">— Select —</option>
+                <option value="1">1 — No evidence</option>
+                <option value="2">2 — Some evidence</option>
+                <option value="3">3 — Strong</option>
+                <option value="4">4 — Exceptional</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr class="total-row">
+          <td><div class="q-lbl">Total</div></td>
+          <td><span class="total-val" id="tot-connor">—</span><span class="total-max"> / 12</span></td>
+          <td><span class="total-val" id="tot-mike">—</span><span class="total-max"> / 12</span></td>
+          <td><span class="total-val" id="tot-perrisa">—</span><span class="total-max"> / 12</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sc-section" id="bar-section" style="display:none;">
+    <div class="section-title">Visual Comparison</div>
+    <div id="bar-chart"></div>
+  </div>
+
+  <div class="sc-section">
+    <div class="section-title">Candidate Snapshot</div>
+    <div class="snap-grid">
+      <div class="snap-card">
+        <div class="snap-hdr">Connor Gallery</div>
+        <div class="snap-body">
+          <div class="snap-row">
+            <div class="snap-lbl">Biggest Strength</div>
+            <div class="snap-val">Deepest renewals + MuleSoft expertise; founding member of the org; 16 years progressive experience</div>
+          </div>
+          <div class="snap-row">
+            <div class="snap-lbl">Key Unknown</div>
+            <div class="snap-val">Can he lead at Director level — vision, executive presence, strategy — not just execution?</div>
+          </div>
+          <div class="snap-row">
+            <div class="snap-lbl">Required Skills Check</div>
+            <div class="snap-val">
+              <span class="chk chy">✓ Salesforce.com</span>
+              <span class="chk chy">✓ MuleSoft</span>
+              <span class="chk chy">✓ Team leadership</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="snap-card">
+        <div class="snap-hdr">Mike Murray</div>
+        <div class="snap-body">
+          <div class="snap-row">
+            <div class="snap-lbl">Biggest Strength</div>
+            <div class="snap-val">Largest leadership scale ($3B+); consistent quota overachievement; LATAM and Americas coverage</div>
+          </div>
+          <div class="snap-row">
+            <div class="snap-lbl">Key Unknown</div>
+            <div class="snap-val">Can he bridge the SaaS renewals motion gap and learn the Salesforce/MuleSoft product set quickly?</div>
+          </div>
+          <div class="snap-row">
+            <div class="snap-lbl">Required Skills Check</div>
+            <div class="snap-val">
+              <span class="chk chn">✗ Salesforce.com</span>
+              <span class="chk chn">✗ MuleSoft</span>
+              <span class="chk chy">✓ Team leadership</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="snap-card">
+        <div class="snap-hdr">Perrisa Joorabchi</div>
+        <div class="snap-body">
+          <div class="snap-row">
+            <div class="snap-lbl">Biggest Strength</div>
+            <div class="snap-val">Deepest MuleSoft commercial knowledge; 10+ years at Salesforce; pricing, deal strategy, and LATAM</div>
+          </div>
+          <div class="snap-row">
+            <div class="snap-lbl">Key Unknown</div>
+            <div class="snap-val">Can she own a number, not just advise on one? Direct accountability for renewal outcomes is new.</div>
+          </div>
+          <div class="snap-row">
+            <div class="snap-lbl">Required Skills Check</div>
+            <div class="snap-val">
+              <span class="chk chy">✓ Salesforce.com</span>
+              <span class="chk chy">✓ MuleSoft</span>
+              <span class="chk chq">? Renewal quota ownership</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- /content -->
+
+<script>
+const scores = {
+  connor:  { 1: null, 2: null, 3: null },
+  mike:    { 1: null, 2: null, 3: null },
+  perrisa: { 1: null, 2: null, 3: null }
+};
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+function updateScore(select, candidate, q) {
+  const val = select.value ? parseInt(select.value) : null;
+  scores[candidate][q] = val;
+  select.className = 'score-select';
+  if (val) select.classList.add('s' + val);
+  recalc();
+}
+
+function recalc() {
+  ['connor', 'mike', 'perrisa'].forEach(c => {
+    const vals = [scores[c][1], scores[c][2], scores[c][3]].filter(v => v !== null);
+    const el = document.getElementById('tot-' + c);
+    if (!vals.length) {
+      el.textContent = '—';
+      el.style.color = '#032D60';
+    } else {
+      const sum = vals.reduce((a, b) => a + b, 0);
+      el.textContent = sum;
+      el.style.color = sum <= 5 ? '#c0392b' : sum <= 8 ? '#d35400' : sum <= 10 ? '#1e8449' : '#0070D2';
+    }
+  });
+
+  const anyScored = Object.values(scores).some(c => Object.values(c).some(v => v !== null));
+  const barSection = document.getElementById('bar-section');
+  barSection.style.display = anyScored ? 'block' : 'none';
+  if (anyScored) renderBars();
+}
+
+function renderBars() {
+  const candidates = [
+    { key: 'connor',  name: 'Connor Gallery' },
+    { key: 'mike',    name: 'Mike Murray' },
+    { key: 'perrisa', name: 'Perrisa Joorabchi' }
+  ];
+  document.getElementById('bar-chart').innerHTML = candidates.map(c => {
+    const vals = [scores[c.key][1], scores[c.key][2], scores[c.key][3]].filter(v => v !== null);
+    const sum = vals.reduce((a, b) => a + b, 0);
+    const pct = vals.length ? (sum / 12 * 100) : 0;
+    const label = vals.length ? sum + '/12' : 'Not scored';
+    return `
+      <div class="bar-row">
+        <div class="bar-name">${c.name}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+        <div class="bar-val">${label}</div>
+      </div>`;
+  }).join('');
+}
+</script>
+</body>
+</html>
